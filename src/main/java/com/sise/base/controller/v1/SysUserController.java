@@ -4,12 +4,14 @@ package com.sise.base.controller.v1;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sise.base.annotation.Log;
+import com.sise.base.configurer.RsaProperties;
 import com.sise.base.core.CommonResult;
 import com.sise.base.dto.SysUserDto;
 import com.sise.base.dto.UpdateSysUserPasswordParam;
 import com.sise.base.dto.query.SysUserQueryCriteria;
 import com.sise.base.entity.SysUser;
 import com.sise.base.service.ISysUserService;
+import com.sise.base.utils.RsaUtils;
 import com.sise.base.utils.SecurityUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -87,22 +89,25 @@ public class SysUserController {
     @Log("修改密码")
     @ApiOperation("修改密码")
     @PostMapping(value = "/updatePass")
-    public CommonResult updatePass(@RequestBody UpdateSysUserPasswordParam passVo){
+    public CommonResult updatePass(@RequestBody UpdateSysUserPasswordParam passVo) throws Exception {
+        String oldPass = RsaUtils.decryptByPrivateKey(RsaProperties.privateKey,passVo.getOldPass());
+        String newPass = RsaUtils.decryptByPrivateKey(RsaProperties.privateKey,passVo.getNewPass());
         SysUserDto userDto = sysUserService.findByName(SecurityUtils.getCurrentUsername());
-        if(!passVo.getOldPassword().equals(userDto.getPassword())){
+        if(!passwordEncoder.matches(oldPass, userDto.getPassword())){
             return CommonResult.failed("修改失败，旧密码错误");
         }
-        if(passVo.getNewPassword().equals(userDto.getPassword())){
+        if(passwordEncoder.matches(newPass, userDto.getPassword())){
             return CommonResult.failed("新密码不能与旧密码相同");
         }
+        passVo.setUserId(SecurityUtils.getCurrentUserId().toString());
+        passVo.setNewPass(passwordEncoder.encode(newPass));
         sysUserService.updatePassword(passVo);
         return CommonResult.success(null);
     }
 
-    @Log("修改头像")
     @ApiOperation("修改头像")
     @PostMapping(value = "/updateAvatar")
-    public CommonResult updateAvatar(@RequestParam MultipartFile file){
+    public CommonResult updateAvatar(@RequestParam("file") MultipartFile file){
         return CommonResult.success(sysUserService.updateAvatar(file));
     }
 

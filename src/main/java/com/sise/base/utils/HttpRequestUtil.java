@@ -43,10 +43,11 @@ public class HttpRequestUtil {
 
         String comma = ",";
         String localhost = "127.0.0.1";
+        String unKnowHost = "0:0:0:0:0:0:0:1";
         if (ip.contains(comma)) {
             ip = ip.split(",")[0];
         }
-        if (localhost.equals(ip)) {
+        if (localhost.equals(ip) || unKnowHost.equals(ip)) {
             // 获取本机真正的ip地址
             try {
                 ip = InetAddress.getLocalHost().getHostAddress();

@@ -66,4 +66,7 @@ public class WebLog implements Serializable {
     private Object parameter;
 
     private Object result;
+
+    private String browser;
+
 }

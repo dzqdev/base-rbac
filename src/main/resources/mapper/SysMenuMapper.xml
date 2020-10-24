@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sise.pet.mapper.SysMenuMapper">
+<mapper namespace="com.sise.base.mapper.SysMenuMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.sise.pet.entity.SysMenu">
+    <resultMap id="BaseResultMap" type="com.sise.base.entity.SysMenu">
         <id column="id" property="id" />
         <result column="pid" property="pid" />
         <result column="type" property="type" />

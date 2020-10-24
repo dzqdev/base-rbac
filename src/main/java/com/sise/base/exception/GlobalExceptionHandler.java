@@ -4,6 +4,7 @@ import com.sise.base.core.CommonResult;
 import com.sise.base.core.ResultCode;
 import com.sise.base.utils.ThrowableUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -60,6 +61,13 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = EntityNotFoundException.class)
     public CommonResult entityNotFoundException(EntityNotFoundException e) {
         // 打印堆栈信息
+        log.error(ThrowableUtil.getStackTrace(e));
+        return CommonResult.failed(ResultCode.FAILURE,e.getMessage());
+    }
+
+    @ResponseBody
+    @ExceptionHandler(BadCredentialsException.class)
+    public CommonResult handleBadCredentialsException(BadCredentialsException e){
         log.error(ThrowableUtil.getStackTrace(e));
         return CommonResult.failed(ResultCode.FAILURE,e.getMessage());
     }

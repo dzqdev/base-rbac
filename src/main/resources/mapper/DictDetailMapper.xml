@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sise.pet.mapper.DictDetailMapper">
+<mapper namespace="com.sise.base.mapper.DictDetailMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.sise.pet.entity.DictDetail">
+    <resultMap id="BaseResultMap" type="com.sise.base.entity.DictDetail">
         <id column="id" property="id" />
         <result column="label" property="label"/>
         <result column="value" property="value" />

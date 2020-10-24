@@ -1,7 +1,7 @@
 package com.sise.base.utils;
 
 public class Constant {
-    public static final String TOKEN_CACHE_PREFIX = "pet.cache.token.";
+    public static final String TOKEN_CACHE_PREFIX = "base.cache.token.";
     public static final String USER_LOGIN_TYPE = "User";
     public static final String ADMIN_LOGIN_TYPE = "Admin";
     public static final Integer SYSTEM_NOTICE = 1;

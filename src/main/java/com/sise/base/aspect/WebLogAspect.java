@@ -38,7 +38,7 @@ public class WebLogAspect {
     @Resource
     IWebLogService webLogService;
 
-    @Pointcut("execution(public * com.sise.pet.controller..*.*(..))")
+    @Pointcut("@annotation(com.sise.base.annotation.Log)")
     public void pointCut() {
     }
 
@@ -52,11 +52,11 @@ public class WebLogAspect {
 
     @Around("pointCut()")
     public Object doAround(ProceedingJoinPoint joinPoint) throws Throwable {
-        long startTime = System.currentTimeMillis();
         //获取当前请求对象
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
         WebLog webLog = new WebLog();
+        long startTime = System.currentTimeMillis();
         Object result = joinPoint.proceed();
         Signature signature = joinPoint.getSignature();
         MethodSignature methodSignature = (MethodSignature) signature;
@@ -77,6 +77,7 @@ public class WebLogAspect {
         webLog.setUri(request.getRequestURI());
         webLog.setUrl(request.getRequestURL().toString());
         webLog.setIp(HttpRequestUtil.getIpAddress(request));
+        webLog.setBrowser(HttpRequestUtil.getBrowser(request));
         String username = SecurityUtils.getCurrentUsername();
         webLog.setUsername(username);
         webLogService.save(webLog);

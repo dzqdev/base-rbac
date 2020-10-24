@@ -21,9 +21,10 @@ import java.util.Set;
  * @author author
  * @since 2020-10-23
  */
-@Api(tags = "系统管理：轮播图")
+
 @RestController
 @RequestMapping("/api/v1/banner")
+@Api(tags = "系统管理：轮播图")
 public class BannerController {
     @Resource
     IBannerService bannerService;
@@ -44,7 +45,7 @@ public class BannerController {
 
     @Log("修改轮播图显示状态")
     @ApiOperation("修改轮播图显示状态")
-    @PutMapping
+    @PutMapping("state")
     public CommonResult updateState(Banner banner){
         Banner systemBanner = bannerService.getById(banner.getId());
         if(systemBanner != null){

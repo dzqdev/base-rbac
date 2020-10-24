@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sise.pet.mapper.SysUserMapper">
+<mapper namespace="com.sise.base.mapper.SysUserMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.sise.pet.entity.SysUser">
+    <resultMap id="BaseResultMap" type="com.sise.base.entity.SysUser">
         <id column="id" property="id" />
         <result column="username" property="username" />
         <result column="phone" property="phone" />
@@ -18,9 +18,9 @@
         <result column="update_time" property="updateTime" />
     </resultMap>
 
-    <resultMap id="SysUserDto" type="com.sise.pet.dto.SysUserDto" extends="BaseResultMap">
-        <collection property="roles" ofType="com.sise.pet.entity.SysRole" column="id"
-                    select="com.sise.pet.mapper.SysUsersRolesMapper.selectUserRoles">
+    <resultMap id="SysUserDto" type="com.sise.base.dto.SysUserDto" extends="BaseResultMap">
+        <collection property="roles" ofType="com.sise.base.entity.SysRole" column="id"
+                    select="com.sise.base.mapper.SysUsersRolesMapper.selectUserRoles">
         </collection>
     </resultMap>
 
@@ -42,7 +42,7 @@
         </where>
     </select>
 
-    <select id="getRoleList" resultMap="com.sise.pet.mapper.SysRoleMapper.BaseResultMap">
+    <select id="getRoleList" resultMap="com.sise.base.mapper.SysRoleMapper.BaseResultMap">
         select
         sr.*
         from sys_users_roles sur

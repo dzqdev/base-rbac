@@ -66,7 +66,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     @Override
     public int updatePassword(UpdateSysUserPasswordParam updateSysUserPasswordParam) {
         SysUser sysUser = getById(updateSysUserPasswordParam.getUserId());
-        sysUser.setPassword(updateSysUserPasswordParam.getNewPassword());
+        sysUser.setPassword(updateSysUserPasswordParam.getNewPass());
         updateById(sysUser);
         return 0;
     }

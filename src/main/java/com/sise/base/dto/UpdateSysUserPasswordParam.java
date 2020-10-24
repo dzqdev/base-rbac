@@ -9,7 +9,7 @@ public class UpdateSysUserPasswordParam {
     @ApiModelProperty(value = "用户id", required = true)
     private String userId;
     @ApiModelProperty(value = "旧密码", required = true)
-    private String oldPassword;
+    private String oldPass;
     @ApiModelProperty(value = "新密码", required = true)
-    private String newPassword;
+    private String newPass;
 }

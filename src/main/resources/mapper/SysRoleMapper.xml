@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sise.pet.mapper.SysRoleMapper">
+<mapper namespace="com.sise.base.mapper.SysRoleMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.sise.pet.entity.SysRole">
+    <resultMap id="BaseResultMap" type="com.sise.base.entity.SysRole">
         <id column="id" property="id" />
         <result column="name" property="name" />
         <result column="level" property="level" />
@@ -25,7 +25,7 @@
         delete from sys_roles_menus where menu_id = #{id}
     </delete>
 
-    <select id="getMenuList" resultMap="com.sise.pet.mapper.SysMenuMapper.BaseResultMap">
+    <select id="getMenuList" resultMap="com.sise.base.mapper.SysMenuMapper.BaseResultMap">
         SELECT
             r.*
         FROM
