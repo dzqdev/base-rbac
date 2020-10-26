@@ -15,10 +15,6 @@ public class SysRoleDto {
 
     private String name;
 
-    private String dataScope;
-
-    private Integer level;
-
     private String description;
 
     @Override

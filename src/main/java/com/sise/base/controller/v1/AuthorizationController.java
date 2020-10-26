@@ -96,6 +96,7 @@ public class AuthorizationController {
         return CommonResult.success(SecurityUtils.getCurrentUser());
     }
 
+    @GetMapping(value = "/code")
     @ApiOperation("获取验证码")
     @AnonymousAccess
     public CommonResult getCode() {

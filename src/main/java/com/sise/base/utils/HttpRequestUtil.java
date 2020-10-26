@@ -10,12 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-/**
- * @ClassName HttpRequestUtil
- * @Description TODO
- * @Date 2020/8/25 21:52
- * @Version 1.0
- **/
+
 public class HttpRequestUtil {
     private static final Logger log = LoggerFactory.getLogger(HttpRequestUtil.class);
 

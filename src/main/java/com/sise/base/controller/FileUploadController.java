@@ -4,6 +4,8 @@ import cn.hutool.core.util.ObjectUtil;
 import com.sise.base.core.CommonResult;
 import com.sise.base.utils.FileProperties;
 import com.sise.base.utils.FileUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,11 +16,13 @@ import java.io.File;
 
 @RestController
 @RequestMapping("/api/v1/upload")
+@Api(tags = "文件上传")
 public class FileUploadController {
 
     @Resource
     private FileProperties properties;
 
+    @ApiOperation("上传文件并返回文件访问地址")
     @PostMapping
     public CommonResult upload(MultipartFile multipartFile){
         FileUtil.checkSize(properties.getMaxSize(), multipartFile.getSize());

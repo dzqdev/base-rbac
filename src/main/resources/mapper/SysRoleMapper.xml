@@ -6,9 +6,7 @@
     <resultMap id="BaseResultMap" type="com.sise.base.entity.SysRole">
         <id column="id" property="id" />
         <result column="name" property="name" />
-        <result column="level" property="level" />
         <result column="description" property="description" />
-        <result column="data_scope" property="dataScope" />
         <result column="create_by" property="createBy" />
         <result column="update_by" property="updateBy" />
         <result column="create_time" property="createTime" />
@@ -17,7 +15,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, name, level, description, data_scope, create_by, update_by, create_time, update_time
+        id, name, description, create_by, update_by, create_time, update_time
     </sql>
 
 

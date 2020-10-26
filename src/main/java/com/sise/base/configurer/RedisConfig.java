@@ -31,10 +31,7 @@ import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author Zheng Jie
- * @date 2018-11-24
- */
+
 @Slf4j
 @Configuration
 @EnableCaching
@@ -67,7 +64,6 @@ public class RedisConfig extends CachingConfigurerSupport {
         // 全局开启AutoType，这里方便开发，使用全局的方式
         ParserConfig.getGlobalInstance().setAutoTypeSupport(true);
         // 建议使用这种方式，小范围指定白名单
-        // ParserConfig.getGlobalInstance().addAccept("me.zhengjie.domain");
         // key的序列化采用StringRedisSerializer
         template.setKeySerializer(new StringRedisSerializer());
         template.setHashKeySerializer(new StringRedisSerializer());

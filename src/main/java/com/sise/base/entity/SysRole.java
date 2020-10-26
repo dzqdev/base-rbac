@@ -36,19 +36,9 @@ public class SysRole implements Serializable {
     private String name;
 
     /**
-     * 角色级别
-     */
-    private Integer level;
-
-    /**
      * 描述
      */
     private String description;
-
-    /**
-     * 数据权限
-     */
-    private String dataScope;
 
     /**
      * 创建者
